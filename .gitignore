@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+__pycache__/
+daily.txt
+dailyupdate_3.txt
+result.csv
