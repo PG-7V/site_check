@@ -7,6 +7,8 @@ from source import file_for_read, file_output
 
 start_time = time.time()
 
+#оставить запросы title, mail and tel.
+
 
 def over_in(over):
     bl = ['\n\n', '\n', '\r', '\r\n', '\t', '\r\n\t', ';']
