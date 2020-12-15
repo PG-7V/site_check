@@ -36,8 +36,7 @@ def get_html(url):
 
 def writer_csv(data):
     with open(file_output, 'a') as file:
-        order = ['url', 'title', 'desc', 'h1', 'tel', 'mail', 'inst', 'fb',
-                 'ok', 'tw', 'yot', 'vib', 'sk', 'wh', 'tg', 'vk']
+        order = ['url', 'title', 'desc', 'tel']
         writer = csv.DictWriter(file, delimiter=';', fieldnames=order)
         writer.writerow(data)
 
@@ -57,10 +56,6 @@ def get_page_data(text, url):
             desc = False
 
         if title and desc:
-            try:
-                h1 = over_in(str(root_element.xpath("//h1/text()")))
-            except:
-                h1 = ''
 
             try:
                 mail1 = root_element.xpath("//a[contains(@href, '@')]/@href")
@@ -79,93 +74,15 @@ def get_page_data(text, url):
             except:
                 tel = ''
 
-            try:
-                inst = str(root_element.xpath("//*[contains(@href, 'instagram.com')]/@href"))
-            except:
-                inst = ''
 
-            try:
-                fb = str(root_element.xpath("//*[contains(@href, 'facebook.com')]/@href"))
-            except:
-                fb = ''
-
-            try:
-                ok = str(root_element.xpath("//*[contains(@href, 'ok.ru')]/@href"))
-            except:
-                ok = ''
-
-            try:
-                tw = str(root_element.xpath("//*[contains(@href, 'twitter.com')]/@href"))
-            except:
-                tw = ''
-
-            try:
-                yot = str(root_element.xpath("//*[contains(@href, 'youtube.com')]/@href"))
-            except:
-                yot = ''
-
-            try:
-                vib = str(root_element.xpath("//*[contains(@href, 'viber')]/@href"))
-            except:
-                vib = ''
-
-            try:
-                sk = str(root_element.xpath("//*[contains(@href, 'skype')]/@href"))
-            except:
-                sk = ''
-
-            try:
-                wh1 = root_element.xpath("//*[contains(@href, 'whatsapp')]/@href")
-            except:
-                wh1 = ''
-
-            try:
-                wh2 = root_element.xpath("//*[contains(@href, 'wa.me')]/@href")
-            except:
-                wh2 = ''
-
-            wh = str(wh1) + ',' + str(wh2)
-
-            try:
-                tg1 = root_element.xpath("//*[contains(@href, 't.me')]/@href")
-            except:
-                tg1 = ''
-
-            try:
-                tg2 = root_element.xpath("//*[contains(@href, 'telegram.me')]/@href")
-            except:
-                tg2 = ''
-
-            tg = str(tg1) + ',' + str(tg2)
-
-            try:
-                vk1 = root_element.xpath("//*[contains(@href, 'vk.me')]/@href")
-            except:
-                vk1 = ''
-            try:
-                vk2 = root_element.xpath("//*[contains(@href, 'vk.com')]/@href")
-            except:
-                vk2 = ''
-            vk = str(vk1) + ',' + str(vk2)
 
 
             data = {
                 'url': url,
                 'title': title,
                 'desc': desc,
-                'h1': h1,
                 'mail': mail,
                 'tel': tel,
-                'inst': inst,
-                'fb': fb,
-                'ok': ok,
-                'tw': tw,
-                'yot': yot,
-                'vib': vib,
-                'sk': sk,
-                'wh': wh,
-                'tg': tg,
-                'vk': vk
                 }
             writer_csv(data)
 
