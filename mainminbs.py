@@ -1,5 +1,6 @@
-import lxml.html
+import lxml
 import requests
+from bs4 import BeautifulSoup
 import csv
 from multiprocessing import Pool
 import time
@@ -43,34 +44,37 @@ def writer_csv(data):
 def get_page_data(text, url):
 
     try:
-        root_element = lxml.html.fromstring(text)
+        soup = BeautifulSoup(text, 'lxml')
+        #root_element = lxml.html.fromstring(text)
         try:
-            title = over_in(str(root_element.xpath("//title/text()")))
+            title = soup.find('head').find('title').text.strip()
+            #title = over_in(str(root_element.xpath("//title/text()")))
             # TODO: only title, description, mail and phone
         except:
             title = False
 
         try:
-            desc = over_in(str(root_element.xpath("//meta[@name='description']/@content/text()")))
+            desc = soup.find("meta", attrs={'name': 'description'}).attrs['content'].strip()
+            #desc = over_in(str(root_element.xpath("//meta[@name='description']/@content/text()")))
         except:
             desc = False
 
         if title and desc:
 
             try:
-                mail1 = root_element.xpath("//a[contains(@href, '@')]/@href")
+                #mail1 = root_element.xpath("//a[contains(@href, '@')]/@href")
             except:
                 mail1 = ''
 
             try:
-                mail2 = root_element.xpath("//*[contains(@href, 'mailto:')]/@href")
+                #mail2 = root_element.xpath("//*[contains(@href, 'mailto:')]/@href")
             except:
                 mail2 = ''
             mail = str(mail1) + ',' + str(mail2)
             mail = mail.replace('mailto:', '')
 
             try:
-                tel = str(root_element.xpath("//*[contains(@href, 'tel:')]/@href")).replace('tel:', '')
+                #tel = str(root_element.xpath("//*[contains(@href, 'tel:')]/@href")).replace('tel:', '')
             except:
                 tel = ''
 

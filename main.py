@@ -1,4 +1,5 @@
 import lxml.html
+
 import requests
 import csv
 from multiprocessing import Pool
