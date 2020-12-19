@@ -1,4 +1,4 @@
-import lxml
+import lxml.html
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -45,7 +45,7 @@ def get_page_data(text, url):
 
     try:
         soup = BeautifulSoup(text, 'lxml')
-        #root_element = lxml.html.fromstring(text)
+        root_element = lxml.html.fromstring(text)
         try:
             title = soup.find('head').find('title').text.strip()
             #title = over_in(str(root_element.xpath("//title/text()")))
@@ -62,24 +62,21 @@ def get_page_data(text, url):
         if title and desc:
 
             try:
-                #mail1 = root_element.xpath("//a[contains(@href, '@')]/@href")
+                mail1 = root_element.xpath("//a[contains(@href, '@')]/@href")
             except:
                 mail1 = ''
 
             try:
-                #mail2 = root_element.xpath("//*[contains(@href, 'mailto:')]/@href")
+                mail2 = root_element.xpath("//*[contains(@href, 'mailto:')]/@href")
             except:
                 mail2 = ''
             mail = str(mail1) + ',' + str(mail2)
             mail = mail.replace('mailto:', '')
 
             try:
-                #tel = str(root_element.xpath("//*[contains(@href, 'tel:')]/@href")).replace('tel:', '')
+                tel = str(root_element.xpath("//*[contains(@href, 'tel:')]/@href")).replace('tel:', '')
             except:
                 tel = ''
-
-
-
 
 
             data = {
