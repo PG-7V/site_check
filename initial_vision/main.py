@@ -9,7 +9,7 @@ from config import file_for_read, file_output
 start_time = time.time()
 
 #оставить запросы title, mail and tel.
-#Разбираюсь с отображением активности в гит и почта "62360059+PG-7V@users.noreply.github.com"
+#Разбираюсь с отображением активности в гит и почта
 
 
 def over_in(over):
