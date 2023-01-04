@@ -6,6 +6,9 @@ from multiprocessing import Pool
 import time
 from config import file_for_read, file_output
 
+
+
+
 start_time = time.time()
 
 
