@@ -23,7 +23,7 @@
 
                     <div class="p-3">
 
-                        <h3 class="text-2xl">Elliot Thombson</h3>
+                        <h3 class="text-2xl">{{ user.username }}</h3>
                         <span>Associate developer</span>
                     </div>
 
@@ -59,8 +59,8 @@
                     Chat
                 </button>
                 <button
-                        class="w-full h-12 rounded-md bg-blue-700 text-white text-md hover:shadow hover:bg-blue-800">
-                    Follow
+                        class="w-full h-12 rounded-md bg-blue-700 text-white text-md hover:shadow hover:bg-blue-800" onclick="location.href='{% url 'logout' %}?next=/src/keywords'">
+                    Logout
                 </button>
 
             </div>
